@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html ng-app="fenceProject">
+
+	<head>
+		<title>Estimator</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+		<script src="app.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="app.css">
+	</head>
+
+	<div class="top-bar">
+		<span class="top-bar-text">Fence Estimator</span>
+		<div class="nav">
+			<div class="tblspacer">
+				<ul>
+					<li><a href="#choose">Choose</a></li>
+					<li><a href="#draw">Draw</a></li>
+					<li><a href="#discover">Discover</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<body ng-controller="mainCtrl">
+
+		<div class="main">
+			<div class="container">
+				<div>
+					<a name="choose"></a>
+					<div class="topBarSpacer"></div>
+					<div class="headerBar">
+						<div class="headerText">Choose</div>
+					</div>
+					<ul>
+						<li ng-repeat="data in api.data">
+							<div id="fenceType" ng-class="{selected: data==selected}" ng-click="select(data)">
+								<div>
+									<img src="{{data.icon}}">
+									<span><b>{{data.name}}</b></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<div class="adv-opts" ng-show="selected">
+						<div>
+							<b>Color</b><br>
+							<div ng-repeat="c in selected.colors">
+								<div ng-click="selectColor(c)" ng-class="{selected: c==selectedColor}">
+									<div>
+										<img src="{{c.src}}">
+										<span>{{c.name}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div>
+							<b>Height</b><br>
+							<div ng-repeat="h in selected.sizes">
+								<div ng-click="selectHeight(h)" ng-class="{selected: h==selectedHeight}">
+									<div>
+										<span>{{h.name}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div>
+							<b>Style</b><br>
+							<div ng-repeat="s in selected.styles">
+								<div ng-click="selectStyle(s)" ng-class="{selected: s==selectedStyle}">
+									<div>
+										<span>{{s}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="headerBarNC"></div>
+			<div class="headerBarNC"></div>
+			<div class="container">
+				<div>
+					<a name="draw"></a>
+					<div class="topBarSpacer"></div>
+					<div class="headerBar">
+						<div class="headerText">Draw</div>
+					</div>
+					<div class="center-content">
+						<div class="canvasController" ng-hide="small">
+							<div>
+								<div>
+									<span>Draw your fence project below, then click "Calculate" to calculate the materials</span>
+									<br>
+								</div>
+							</div>
+							<div class="canvasWrapper" style="height: {{canvasHeight}}px">	
+								<canvas id="layer1" ng-click="handleClick($event)" ng-mousedown="handleClick($event)" ng-mouseup="handleClick($event)" ng-mousemove="handleMove($event)"></canvas>
+								<canvas id="layer2"></canvas>
+								<canvas id="layer3"></canvas>
+								
+								<div id="dialogs">
+									<div id="dialog" ng-repeat="s in sections" ng-show="s.showDialog" style="position: absolute;top:{{s.mid.y}}px; left:{{s.mid.x}}px; z-index:3;">
+										Length(ft):<input ng-model="s.length" type="text" style="width:25px"> Gate?<input ng-model="s.gate" type="checkbox"><button id="ok" ng-click="removeDialog($index, s.length, s.gate)">Ok</button>
+										<div class="error" ng-show="error">
+											{{errorMsg}}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="controls">
+								<button class="submitCanvas" ng-click="resources.submitCanvas()" onmouseup="this.blur()">Calculate</button>
+								<button class="submitCanvas" ng-click="resources.clearCanvas()" onmouseup="this.blur()">Clear</button>
+								<button class="submitCanvas" ng-click="resources.undo()" onmouseup="this.blur()">Undo</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="headerBarNC"></div>
+			<div class="container">
+				<div>
+					<a name="discover"></a>
+					<div class="topBarSpacer"></div>
+					<div class="headerBar">
+						<div class="headerText">Discover</div>
+					</div>
+					<div class="right-content">
+						<div class="materials-section">
+							<b>Materials List</b>
+							<br>
+							<br>
+							<div>
+								<span ng-hide="resources.submitted">Draw your fence above and click calculate</span>
+							</div>
+							<div class="materials-list" ng-show="resources.submitted && selected">
+								<div>
+									{{selected.name}}<br>
+									{{selectedColor.name}}<br>
+									{{selectedHeight.name}}<br>
+									{{selectedStyle}}
+								</div>
+								<br>
+								Posts: {{materials.posts}}
+								<br>
+								Sections: {{materials.sections}}
+								<br>
+								Total Linear Feet: {{materials.totalLength}}
+								<br>
+								<br>
+								<div ng-show="selected" ng-repeat="comp in materials.components">
+									<input type="text" style="width:50px" value="{{comp.value}}"><span style="padding-left:5px">{{comp.name}}</span>
+								</div>
+								<br>
+								<span ng-show="materials.gates.length > 0">Gate material</span>
+								<br>
+								<div ng-show="selected" ng-repeat="g in materials.gates">
+									<input type="text" style="width:50px" value="{{g.value}}"><span style="padding-left:5px">{{g.name}}</span>
+								</div>
+								<br>
+								<div class="center-align">
+									<button>Buy Now</button>
+								</div>
+							</div>
+							<div ng-hide="selected">
+								You forgot to select a fence type <a href="#choose">here</a>!
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="headerBarNC"></div>
+			<div class="headerBarNC"></div>
+		</div>
+	</body>
+</html>

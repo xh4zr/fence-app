@@ -1,0 +1,238 @@
+a:link, a:visited {
+	text-decoration: none;
+}
+
+a:active {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #6396fc;
+}
+
+
+.nav {
+	top: 0;	
+	z-index: 10;
+	display: inline-block;
+}
+
+.nav ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.nav ul li {
+	display: inline;
+}
+
+.nav ul li a {
+	padding: 10px;
+	color: #C1C1C1;
+	font-weight: normal;
+}
+
+/*
+Old
+*/
+
+.top-bar {
+	z-index: 10;
+	position:fixed;
+	top: 0;
+	width:100%;
+	font-weight: bold;	
+	font-size: 100%;
+	color: black;
+	text-transform: uppercase;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	display: inline-block;
+	background: #FFFFFF;
+}
+
+.topBarSpacer {
+	padding-top: 48px;
+}
+
+.container {
+	height: 100%;
+}
+
+.top-bar-text {
+	padding-left: 10px;
+}
+
+.left-nav {
+	text-align: center;
+	width: 100%;
+}
+
+.center-content {
+	text-align: center;
+	width: 100%;
+	padding-top: 10px;
+}
+
+.right-content {
+	text-align: center;
+	width: 50%;
+	margin: auto;
+	padding-top: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: auto;
+}
+
+li span {
+	white-space: nowrap;
+}
+
+img {
+    vertical-align: middle;
+}
+
+li {
+	display: inline-block;
+	width: 46%;
+	padding: 10px;
+}
+
+.adv-opts {
+	margin: auto;
+	width: 20%;
+}
+
+.error {
+	color: red;
+	padding-right: 5px;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background: #FFFFFF;
+	font-family: 'Oswald',arial,serif;
+}
+
+.selected {
+	border: 2px solid #3297FD;
+	box-shadow: 0px 0px 5px #888888;
+	margin: -2px;
+}
+
+#fenceType {
+	margin: 2px;
+}
+
+#fenceType div:hover {
+	margin: -2px;
+	border: 2px solid #3297FD;
+	box-shadow: 0px 0px 5px #888888;
+}
+
+.canvasWrapper {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+	position: relative;
+	background-color: #FFFFFF;
+	padding-top: 10px;
+}
+
+.canvasController {
+	margin: auto;
+	width: 75%;
+}
+
+canvas {
+	position:absolute;
+    left:0px;
+    top:0px;
+    cursor: crosshair;
+    overflow: hidden;
+    border: 1px solid #175e3a;
+}
+
+.controls {
+	height: 25px;
+	width: 100%;
+}
+
+.submitCanvas {
+	float: right;
+	margin-left: 10px;
+}
+
+button {
+	background-color: #6396fc;
+	border: 1px solid #6396fc;
+	color: #fff!important;
+	cursor: pointer;
+	font-family: 'Oswald',arial,serif;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 4px 7px 4px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+button#ok {
+	border-radius: 10px;
+}
+
+.center-align {
+	text-align: center;
+}
+
+#layer1 {
+	z-index: 3;
+	background: transparent;
+}
+
+#layer2 {
+	z-index: 2;
+	background: transparent;
+}
+
+#layer3 {
+	z-index: 1;
+	background: #FFFFFF;
+}
+
+#dialog {
+	z-index: 3;
+	position: absolute;
+	white-space: nowrap;
+	box-shadow: 0px 0px 5px #888888;
+	padding-left: 5px;
+	border-radius: 10px;
+	background: #FFFFFF;
+}
+
+.materials-section {
+	display: inline-block;
+	text-align: left;
+}
+
+.materials-list {
+	padding-left: 10px;
+}
+
+.headerBarNC {
+	padding: 5%;
+}
+
+.headerBar {
+	background: #6396fc;
+	color: #FFFFFF;
+	font-size: 200%;
+}
+
+.headerText {
+	padding: 3%;
+}

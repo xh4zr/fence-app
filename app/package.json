@@ -1,0 +1,15 @@
+{
+  "name": "food-dictionary",
+  "version": "1.0.0",
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean":"*",
+    "grunt-angular-templates":"*",
+    "grunt-contrib-concat":"*",
+    "grunt-contrib-uglify":"*",
+    "grunt-contrib-watch":"*",
+    "grunt-ngmin":"*",
+    "express":"*",
+    "body-parser":"*"
+  }
+}
